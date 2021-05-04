@@ -58,43 +58,45 @@ void loop() {
   }
   // Se muestra la animacion
   else{
-    // Repetir mientras se tengan que mostrar animaciones de encendido y apagado
-    while(animation > 0){
-      // Encender angel
-      digitalWrite(NEON_ANGEL, HIGH);
-      digitalWrite(NEON_DIABLO, LOW);
-
-      // Esperar el tiempo de la animacion
-      delay(animationDelay);
-
-      // Encender diablo
-      digitalWrite(NEON_ANGEL, LOW);
-      digitalWrite(NEON_DIABLO, HIGH);
-
-      // Esperar animacion
-      delay(animationDelay);
-
-      // Eliminar una animacion del total de animaciones a mostar
-      animation--;
-
-      // Incrementar el tiempo entre que se apaga y prende angel y diablo
-      animationDelay+=50;
+    if(animation > 0){
+      // Repetir mientras se tengan que mostrar animaciones de encendido y apagado
+      while(animation > 0){
+        // Encender angel
+        digitalWrite(NEON_ANGEL, HIGH);
+        digitalWrite(NEON_DIABLO, LOW);
+  
+        // Esperar el tiempo de la animacion
+        delay(animationDelay);
+  
+        // Encender diablo
+        digitalWrite(NEON_ANGEL, LOW);
+        digitalWrite(NEON_DIABLO, HIGH);
+  
+        // Esperar animacion
+        delay(animationDelay);
+  
+        // Eliminar una animacion del total de animaciones a mostar
+        animation--;
+  
+        // Incrementar el tiempo entre que se apaga y prende angel y diablo
+        animationDelay+=50;
+      }
+  
+      // Cuando se termina la animacion
+  
+      // Si el numero aleatorio es 0 encender Angel
+      if(randNumber==0){
+        digitalWrite(NEON_ANGEL, HIGH);
+        digitalWrite(NEON_DIABLO, LOW);
+      }
+      // Si el numero aleatorio es 0 encender Diablo
+      else{
+        digitalWrite(NEON_ANGEL, LOW);
+        digitalWrite(NEON_DIABLO, HIGH);
+      }
+  
+      // Apagar bandera de animacion
+      generating = false;
     }
-
-    // Cuando se termina la animacion
-
-    // Si el numero aleatorio es 0 encender Angel
-    if(randNumber==0){
-      digitalWrite(NEON_ANGEL, HIGH);
-      digitalWrite(NEON_DIABLO, LOW);
-    }
-    // Si el numero aleatorio es 0 encender Diablo
-    else{
-      digitalWrite(NEON_ANGEL, LOW);
-      digitalWrite(NEON_DIABLO, HIGH);
-    }
-
-    // Apagar bandera de animacion
-    generating = false;
   }
 }
