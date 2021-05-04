@@ -20,7 +20,7 @@ bool generating = false;
 long randNumber;
 
 // Valores por default de las variables
-int animation = INITIAL_ANIMATION;
+int animation = 0;
 int animationDelay = INITIAL_ANIMATION_DELAY;
 
 void setup() {
@@ -31,6 +31,10 @@ void setup() {
 
   // Configuracion de generador de numeros aleatorio, tomando como semilla de generaion el valor que lea del puerto 0
   randomSeed(analogRead(0));
+
+  // Al encender los luces neon estan apagadas
+  digitalWrite(NEON_ANGEL, LOW);
+  digitalWrite(NEON_DIABLO, LOW);
 }
 
 void loop() {
@@ -89,7 +93,7 @@ void loop() {
         digitalWrite(NEON_ANGEL, HIGH);
         digitalWrite(NEON_DIABLO, LOW);
       }
-      // Si el numero aleatorio es 0 encender Diablo
+      // Si el numero aleatorio es 1 encender Diablo
       else{
         digitalWrite(NEON_ANGEL, LOW);
         digitalWrite(NEON_DIABLO, HIGH);
